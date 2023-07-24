@@ -2,11 +2,13 @@ package library;
 
 import java.util.Objects;
 import java.util.Scanner;
+import java.sql.*;
+
 public class AddUser
 {
     private String name, address, phone_number, correct;
 
-    public void insert ()
+    public void getInput ()
     {
         boolean redo = true;
         Scanner input = new Scanner(System.in);
@@ -20,12 +22,32 @@ public class AddUser
             System.out.print("Enter your phone number:\n");
             phone_number = input.nextLine();
             System.out.print("Is this information correct? " + name + ", " + address + ", " + phone_number + " Y/N ");
-            correct = input.nextLine();
+            String correct = input.nextLine();
             if (Objects.equals(correct, "Y") || Objects.equals(correct, "y"))
             {
                 redo = false;
             }
+        }
+        input.close();
+        insertIntoTable(name,address,phone_number);
+    }
 
+    public void insertIntoTable(String name, String address, String phone_number)
+    {
+        String url = "jdbc:mysql://localhost:3306/library_system";
+        String user = "root";
+        String password = "1234";
+        try
+        {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection conn = DriverManager.getConnection(url,user,password);
+            /*Statement myStatement = conn.createStatement();
+            myStatement.executeUpdate("insert into library_card" + "(name,address,phone_number)" + "values("+name+","+address+","+phone_number+")");
+            System.out.print("User added.\n");*/
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
         }
     }
 }
