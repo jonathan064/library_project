@@ -8,7 +8,6 @@ public class AddUser
 {
     private String name, address, phone_number;
 
-
     public void getInput ()
     {
         boolean redo = true;
