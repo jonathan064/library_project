@@ -31,10 +31,10 @@ public class AddUser
             }
         }
         input.close();
-        insertIntoTable(name,address,phone_number,is_child);
+        insertUserIntoTable(name,address,phone_number,is_child);
     }
     //information needed to connect to db through local proxy
-    public void insertIntoTable(String name, String address, String phone_number, String is_child)
+    public void insertUserIntoTable(String name, String address, String phone_number, String is_child)
     {
         String url = "jdbc:mysql://localhost:3306/library_system";
         String user = "root";
