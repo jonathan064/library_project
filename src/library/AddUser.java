@@ -6,7 +6,8 @@ import java.sql.*;
 
 public class AddUser
 {
-    private String name, address, phone_number, correct;
+    private String name, address, phone_number;
+
 
     public void getInput ()
     {
@@ -31,7 +32,7 @@ public class AddUser
         input.close();
         insertIntoTable(name,address,phone_number);
     }
-
+    //information needed to connect to db through local proxy
     public void insertIntoTable(String name, String address, String phone_number)
     {
         String url = "jdbc:mysql://localhost:3306/library_system";
@@ -41,9 +42,10 @@ public class AddUser
         {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection conn = DriverManager.getConnection(url,user,password);
-            /*Statement myStatement = conn.createStatement();
-            myStatement.executeUpdate("insert into library_card" + "(name,address,phone_number)" + "values("+name+","+address+","+phone_number+")");
-            System.out.print("User added.\n");*/
+            Statement myStatement = conn.createStatement();
+            //specific formatting needed for sql statement
+            myStatement.executeUpdate("insert into library_card" + "(name,address,phone_number)" + "values('"+name+"','"+address+"','"+phone_number+"')");
+            System.out.print("User added.\n");
         }
         catch (Exception e)
         {
