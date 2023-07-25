@@ -6,7 +6,7 @@ import java.sql.*;
 
 public class AddUser
 {
-    private String name, address, phone_number;
+    private String name, address, phone_number,is_child;
 
     public void getInput ()
     {
@@ -21,7 +21,9 @@ public class AddUser
             address = input.nextLine();
             System.out.print("Enter your phone number:\n");
             phone_number = input.nextLine();
-            System.out.print("Is this information correct? " + name + ", " + address + ", " + phone_number + " Y/N ");
+            System.out.print("Is the user a child? Enter 0 for No, 1 for Yes:\n");
+            is_child = input.nextLine();
+            System.out.print("Is this information correct? " + name + ", " + address + ", " + phone_number + ", Child:"+ is_child+ " Y/N ");
             String correct = input.nextLine();
             if (Objects.equals(correct, "Y") || Objects.equals(correct, "y"))
             {
@@ -29,10 +31,10 @@ public class AddUser
             }
         }
         input.close();
-        insertIntoTable(name,address,phone_number);
+        insertIntoTable(name,address,phone_number,is_child);
     }
     //information needed to connect to db through local proxy
-    public void insertIntoTable(String name, String address, String phone_number)
+    public void insertIntoTable(String name, String address, String phone_number, String is_child)
     {
         String url = "jdbc:mysql://localhost:3306/library_system";
         String user = "root";
@@ -43,7 +45,7 @@ public class AddUser
             Connection conn = DriverManager.getConnection(url,user,password);
             Statement myStatement = conn.createStatement();
             //specific formatting needed for sql statement
-            myStatement.executeUpdate("insert into library_card" + "(name,address,phone_number)" + "values('"+name+"','"+address+"','"+phone_number+"')");
+            myStatement.executeUpdate("insert into library_card" + "(name,address,phone_number,is_child)" + "values('"+name+"','"+address+"','"+phone_number+"','"+is_child+"')");
             System.out.print("User added.\n");
         }
         catch (Exception e)

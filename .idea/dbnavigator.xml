@@ -12,7 +12,7 @@
     <loaded-nodes />
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
-    <connection id="3d834ef4-017a-4734-a5c6-deda1a741f0b">
+    <connection id="8e232d32-be59-452a-b310-792af6a7344c">
       <console name="Connection" type="STANDARD" schema="library_system" session="Main"><![CDATA[select * from library_card;]]></console>
     </connection>
   </component>
@@ -37,9 +37,12 @@
     <last-used-operator value="EQUAL" />
     <filters />
   </component>
+  <component name="DBNavigator.Project.ScriptExecutionManager" clear-outputs="true">
+    <recently-used-interfaces />
+  </component>
   <component name="DBNavigator.Project.Settings">
     <connections>
-      <connection id="3d834ef4-017a-4734-a5c6-deda1a741f0b" active="true" signed="true">
+      <connection id="8e232d32-be59-452a-b310-792af6a7344c" active="true" signed="true">
         <database>
           <name value="Connection" />
           <description value="" />
