@@ -11,6 +11,7 @@ public class menu
     public menu()
     {
         AddUser new_user = new AddUser();
+
         String option_select;
         Scanner input = new Scanner(System.in);
         System.out.print("Select an option from below:\n");
