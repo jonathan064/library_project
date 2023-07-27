@@ -4,8 +4,8 @@ public class main
 {
     public static void main(String[] args)
     {
-        CheckoutBook checkoutBook = new CheckoutBook();
-        checkoutBook.getInput();
+        CheckoutItem checkoutItem = new CheckoutItem();
+        checkoutItem.getInput();
 
     }
 }

@@ -4,7 +4,7 @@ import java.util.Objects;
 import java.util.Scanner;
 import java.sql.*;
 import java.time.*;
-public class CheckoutBook
+public class CheckoutItem
 {
     private String item_id, user_id, title, checkout_date, due_date;
 
