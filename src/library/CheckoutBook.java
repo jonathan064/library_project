@@ -44,9 +44,13 @@ public class CheckoutBook
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection conn = DriverManager.getConnection(url,user,password);
             Statement myStatement = conn.createStatement();
-           // ResultSet get_title = myStatement.executeQuery("select title from item_catalog WHERE item_id="+item_id);
-            //title = get_title.getString(1);
-            title = "Test";
+            ResultSet get_title = myStatement.executeQuery("select title from item_catalog where item_id='"+ item_id+"'");
+            //Only gets title if query isn't empty
+            while(get_title.next())
+            {
+                title = get_title.getString(1);
+            }
+            //parses date entered and adds 3 weeks, change based on best seller
             LocalDate calculate_due_date = LocalDate.parse(checkout_date);
             calculate_due_date = calculate_due_date.plusWeeks(3);
             due_date = calculate_due_date.toString();
