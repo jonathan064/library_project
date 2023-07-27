@@ -35,6 +35,7 @@ public class CheckoutBook
 
     public void insertUserIntoTable(String item_id, String user_id, String checkout_date)
     {
+        String renew = "0";
         String url = "jdbc:mysql://localhost:3306/library_system";
         String user = "root";
         String password = "1234";
@@ -43,12 +44,15 @@ public class CheckoutBook
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection conn = DriverManager.getConnection(url,user,password);
             Statement myStatement = conn.createStatement();
-            /*ResultSet get_title = myStatement.executeQuery("select title from item_catalog WHERE item_id="+item_id);
-            title = get_title.getString(1);*/
+           // ResultSet get_title = myStatement.executeQuery("select title from item_catalog WHERE item_id="+item_id);
+            //title = get_title.getString(1);
+            title = "Test";
             LocalDate calculate_due_date = LocalDate.parse(checkout_date);
             calculate_due_date = calculate_due_date.plusWeeks(3);
             due_date = calculate_due_date.toString();
             System.out.print(due_date);
+
+            myStatement.executeUpdate("insert into item_checkout" + "(item_id,user_id,title,renew,checkout_date,due_date)" + "values('"+item_id+"','"+user_id+"','"+title+"','"+renew+"','"+checkout_date+" 00:00:01','"+due_date+" 00:00:01')");
         }
         catch (Exception e)
         {
