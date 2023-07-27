@@ -13,7 +13,7 @@
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="8e232d32-be59-452a-b310-792af6a7344c">
-      <console name="Connection" type="STANDARD" schema="library_system" session="Main"><![CDATA[select * from library_card;]]></console>
+      <console name="Connection" type="STANDARD" schema="library_system" session="Main"><![CDATA[select * from item_checkout;]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseEditorStateManager">
@@ -21,6 +21,10 @@
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
     <open-files />
+  </component>
+  <component name="DBNavigator.Project.DatasetFilterManager">
+    <filter-actions connection-id="8e232d32-be59-452a-b310-792af6a7344c" dataset="library_system.item_checkout" active-filter-id="" />
+    <filter-actions connection-id="8e232d32-be59-452a-b310-792af6a7344c" dataset="library_system.item_catalog" active-filter-id="" />
   </component>
   <component name="DBNavigator.Project.ExecutionManager">
     <retain-sticky-names value="false" />
@@ -36,6 +40,9 @@
   <component name="DBNavigator.Project.ObjectQuickFilterManager">
     <last-used-operator value="EQUAL" />
     <filters />
+  </component>
+  <component name="DBNavigator.Project.ParserDiagnosticsManager">
+    <diagnostics-history />
   </component>
   <component name="DBNavigator.Project.ScriptExecutionManager" clear-outputs="true">
     <recently-used-interfaces />
