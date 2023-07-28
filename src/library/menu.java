@@ -22,7 +22,7 @@ public class menu
         System.out.print("3. Check-in book:\n");
         System.out.print("4. Checkout book:\n");
         option_select = input.nextLine();
-
+        //displays different options
         switch(option_select)
         {
             case "1":
