@@ -7,7 +7,8 @@ import java.time.*;
 public class CheckoutItem
 {
     private String item_id, user_id, title, checkout_date, due_date;
-
+    private int weeksToAdd = 0;
+    ItemCheckoutFacade conditionsCheck;
     public void getInput ()
     {
         boolean redo = true;
@@ -30,7 +31,10 @@ public class CheckoutItem
             }
         }
         input.close();
-        insertUserIntoTable(item_id, user_id, checkout_date);
+        conditionsCheck = new ItemCheckoutFacade(item_id,user_id);
+
+        //facade calls this if conditions met
+        //insertUserIntoTable(item_id, user_id, checkout_date);
     }
 
     public void insertUserIntoTable(String item_id, String user_id, String checkout_date)
@@ -52,7 +56,7 @@ public class CheckoutItem
             }
             //parses date entered and adds 3 weeks, change based on best seller
             LocalDate calculate_due_date = LocalDate.parse(checkout_date);
-            calculate_due_date = calculate_due_date.plusWeeks(3);
+            calculate_due_date = calculate_due_date.plusWeeks(getWeeksToAdd());
             due_date = calculate_due_date.toString();
             System.out.print(due_date);
 
@@ -63,4 +67,19 @@ public class CheckoutItem
             e.printStackTrace();
         }
     }
+
+    public String getCheckout_date()
+    {
+        return checkout_date;
+    }
+
+    public void setWeeksToAdd(int weeks)
+    {
+        weeksToAdd = weeks;
+    }
+    public int getWeeksToAdd()
+    {
+        return weeksToAdd;
+    }
+
 }
