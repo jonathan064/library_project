@@ -32,7 +32,7 @@ public class menu
                 catalog.viewCatalog();
                 break;
             case "3":
-                checkIn.BookCheckIn();
+                checkIn.BookReturn();
                 break;
             case "4":
                 checkoutItem.getInput();

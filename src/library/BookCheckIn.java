@@ -4,68 +4,14 @@ import java.sql.*;
 import java.util.Scanner;
 
 public class BookCheckIn {
-
-    private String bookId;
-    private boolean isCheckedOut;
-    private String userId;
-
-    private ResultSet resultSet;
     private final String url = "jdbc:mysql://localhost:3306/library_system";
     private final String user = "root";
     private final String password = "1234";
 
-//    public BookCheckIn(String bookId) {
-//        this.bookId = bookId;
-//        this.isCheckedOut = false;
-//    }
 
-    // Getter for bookId
-    public String getBookId() {
-        return bookId;
-    }
-
-
-    // Getter for isCheckedOut
-    public boolean isCheckedOut() {
-        return isCheckedOut;
-    }
-
-//    // Method to update the database with the current checkout status and user ID
-//    public void updateDatabase(boolean checkedOutStatus, String userId){
-//        try {
-//            Class.forName("com.mysql.cj.jdbc.Driver");
-//            Connection conn = DriverManager.getConnection(url, user, password);
-//            PreparedStatement myStatement = conn.createStatement();
-//            String sql = "UPDATE books SET available_for_checkout = ?, user_id = ?, Where item_id = ?";
-//
-//
-//            myStatement.setBoolean(1, checkedOutStatus);
-//            myStatement.setString(2, userId);
-//            myStatement.setString(3, bookId);
-//            resultSet = myStatement.executeQuery(sql);
-//
-//            conn.close();
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//    }
-
-    // Method to check out the book
-    public void checkOut(String userId) {
-        if (!isCheckedOut) {
-            isCheckedOut = true;
-            this.userId = userId;
-            System.out.println("Book with ID " + bookId + " has been checked out by User ID: " + userId);
-            //updateDatabase(true, userId);
-        } else {
-            System.out.println("Book with ID " + bookId + " is already checked out.");
-        }
-    }
-
-
-    public void BookCheckIn() {
+    public void BookReturn() {
         Scanner input = new Scanner(System.in);
-        String userOption;
+        //String userOption;
 
         // Get book ID from the user
         System.out.print("Enter the book ID: ");
@@ -76,6 +22,34 @@ public class BookCheckIn {
         String userId = input.nextLine();
 
         input.close();
+
+        try (Connection connection = DriverManager.getConnection(url, user, password)) {
+            // Update the book status to checked in in the database
+            String updateQuery = "UPDATE item_catalog SET available_for_checkout = true WHERE item_id = ? AND user_id = ?";
+            try (PreparedStatement preparedStatement = connection.prepareStatement(updateQuery)) {
+                preparedStatement.setString(1, bookId);
+                preparedStatement.setString(2, userId);
+
+                int rowsAffected = preparedStatement.executeUpdate();
+
+                if (rowsAffected > 0) {
+                    System.out.println("Book check-in successful.");
+
+                    String choice;
+                    System.out.print("\nReturn to Main Menu? Y/N\n");
+                    choice = input.nextLine();
+                    if(choice.equals("Y") || choice.equals("y")){
+                        new menu();}
+
+
+                } else {
+                    System.out.println("Book check-in failed. Please check the book and user IDs.");
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("Error: " + e.getMessage());
+        }
+
 
     }
 
