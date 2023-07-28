@@ -9,11 +9,9 @@ import java.util.Objects;
 public class AvailabilityCheck
 {
     private String available;
-    private String item;
-
     public boolean isAvailable(String item_id)
     {
-        item = item_id;
+
         String url = "jdbc:mysql://localhost:3306/library_system";
         String user = "root";
         String password = "1234";

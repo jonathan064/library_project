@@ -31,7 +31,7 @@ public class CheckoutItem
             }
         }
         input.close();
-        conditionsCheck = new ItemCheckoutFacade(item_id,user_id);
+        conditionsCheck = new ItemCheckoutFacade(item_id,user_id, checkout_date);
 
         //facade calls this if conditions met
         //insertUserIntoTable(item_id, user_id, checkout_date);
@@ -61,6 +61,7 @@ public class CheckoutItem
             System.out.print(due_date);
 
             myStatement.executeUpdate("insert into item_checkout" + "(item_id,user_id,title,renew,checkout_date,due_date)" + "values('"+item_id+"','"+user_id+"','"+title+"','"+renew+"','"+checkout_date+" 00:00:01','"+due_date+" 00:00:01')");
+            System.out.print("Successfully checked out.");
         }
         catch (Exception e)
         {

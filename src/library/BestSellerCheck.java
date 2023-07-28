@@ -9,12 +9,11 @@ import java.util.Objects;
 public class BestSellerCheck
 {
     private String bestSeller;
-    private String item;
+
     private int weeksToAdd;
 
     public int isBestSeller(String item_id)
     {
-        item = item_id;
         String url = "jdbc:mysql://localhost:3306/library_system";
         String user = "root";
         String password = "1234";

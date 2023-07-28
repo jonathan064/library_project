@@ -8,5 +8,7 @@ public class main
         checkoutItem.getInput();
         //new ItemCheckoutFacade("1","1");
 
+        /*CountRestrictionCheck count = new CountRestrictionCheck();
+        System.out.print(count.validCheckout("2"));*/
     }
 }
