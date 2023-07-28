@@ -12,25 +12,35 @@ public class menu
     {
         AddUser new_user = new AddUser();
         CheckoutItem checkoutItem = new CheckoutItem();
+        ViewItemCatalog catalog = new ViewItemCatalog();
+        BookCheckIn checkIn = new BookCheckIn();
         String option_select;
         Scanner input = new Scanner(System.in);
         System.out.print("Select an option from below:\n");
         System.out.print("1. Create new library card:\n");
+        System.out.print("2. View Catalog:\n");
+        System.out.print("3. Check-in book:\n");
         System.out.print("4. Checkout book:\n");
         option_select = input.nextLine();
-        //switch statement later for more options
-        if (Objects.equals(option_select, "1"))
-        {
-            new_user.getInput();
-        }
-        switch(option_select){
-        case "4":
-            checkoutItem.getInput();
-            break;
 
-        default:
-            System.out.print("Unknown Selection");
-    }
+        switch(option_select)
+        {
+            case "1":
+                new_user.getInput();
+                break;
+            case "2":
+                catalog.viewCatalog();
+                break;
+            case "3":
+                checkIn.BookCheckIn();
+                break;
+            case "4":
+                checkoutItem.getInput();
+                break;
+
+            default:
+                System.out.print("Unknown Selection");
+        }
     }
 
 }
