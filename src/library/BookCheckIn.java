@@ -30,7 +30,6 @@ public class BookCheckIn {
         System.out.print("Enter the user ID: ");
         String userId = input.nextLine();
 
-        input.close();
 
 
         try (Connection connection = DriverManager.getConnection(url, user, password)) {
@@ -68,6 +67,14 @@ public class BookCheckIn {
                             // Calculate overdue fine for the book (maximum of fine or book value)
                             double fine = Math.min(0.10 * daysPastDue, bookValue);
 
+                            // Remove the returned book from the database
+                            String deleteQuery = "DELETE FROM item_checkout WHERE item_id = ? AND user_id = ?";
+                            try (PreparedStatement deleteStatement = connection.prepareStatement(deleteQuery)) {
+                                deleteStatement.setString(1, bookId);
+                                deleteStatement.setString(2, userId);
+                                deleteStatement.executeUpdate();
+                            }
+
                             // Update the book status to checked-in in the database
                             String updateQuery = "UPDATE item_catalog SET available_for_checkout = true WHERE item_id = ?";
                             try (PreparedStatement preparedStatement = connection.prepareStatement(updateQuery)) {
@@ -89,12 +96,29 @@ public class BookCheckIn {
             if (totalBooksCheckedIn > 0) {
                 System.out.println("Successfully checked in " + totalBooksCheckedIn + " book(s).");
                 System.out.println("Total overdue fine: $" + totalOverdueFine);
+
+                String select;
+                System.out.print("\nReturn to Main Menu? Y/N\n");
+                select = input.nextLine();
+                if(select.equals("Y") || select.equals("y")){
+                    new menu();
+                }
+
             } else {
                 System.out.println("No books were checked in. Please check the book and user IDs.");
+
+                String select;
+                System.out.print("\nReturn to Main Menu? Y/N\n");
+                select = input.nextLine();
+                if(select.equals("Y") || select.equals("y")) {
+                    new menu();
+                }
             }
         } catch (SQLException e) {
             System.err.println("Error: " + e.getMessage());
         }
+
+        input.close();
     }
 }
 
