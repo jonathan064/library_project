@@ -8,6 +8,7 @@ public class BookCheckIn {
 
     public void BookReturn() {
         Scanner input = new Scanner(System.in);
+        List<String> bookIdsToCheckIn = new ArrayList<>();
         //String userOption;
 
         // Get book ID from the user
