@@ -53,7 +53,7 @@ public class BookCheckIn {
                                 itemValueStatement.setString(1, bookId);
                                 try (ResultSet nextSet = itemValueStatement.executeQuery()) {
                                     if (nextSet.next()) {
-                                        bookValue = resultSet.getDouble("item_value");
+                                        bookValue = nextSet.getDouble("item_value");
                                     }
                                 }
                             }
@@ -68,8 +68,8 @@ public class BookCheckIn {
                             // Calculate overdue fine for the book (maximum of fine or book value)
                             double fine = Math.min(0.10 * daysPastDue, bookValue);
 
-                            // Update the book status to checked in in the database
-                            String updateQuery = "UPDATE item_catalog SET available_for_checkout = true WHERE book_id = ?";
+                            // Update the book status to checked-in in the database
+                            String updateQuery = "UPDATE item_catalog SET available_for_checkout = true WHERE item_id = ?";
                             try (PreparedStatement preparedStatement = connection.prepareStatement(updateQuery)) {
                                 preparedStatement.setString(1, bookId);
                                 //preparedStatement.setString(2, userId);
