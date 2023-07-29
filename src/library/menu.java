@@ -14,6 +14,7 @@ public class menu
         CheckoutItem checkoutItem = new CheckoutItem();
         ViewItemCatalog catalog = new ViewItemCatalog();
         BookCheckIn checkIn = new BookCheckIn();
+        RequestUnavailableItem unavailableItem = new RequestUnavailableItem();
         String option_select;
         Scanner input = new Scanner(System.in);
         System.out.print("Select an option from below:\n");
@@ -21,6 +22,7 @@ public class menu
         System.out.print("2. View Catalog:\n");
         System.out.print("3. Check-in book:\n");
         System.out.print("4. Checkout book:\n");
+        System.out.print("5. Request unavailable item:\n");
         option_select = input.nextLine();
         //displays different options
         switch(option_select)
@@ -36,6 +38,9 @@ public class menu
                 break;
             case "4":
                 checkoutItem.getInput();
+                break;
+            case "5":
+                unavailableItem.getInput();
                 break;
 
             default:
