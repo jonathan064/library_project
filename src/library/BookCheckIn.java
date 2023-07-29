@@ -4,9 +4,6 @@ import java.sql.*;
 import java.util.Scanner;
 
 public class BookCheckIn {
-    private final String url = "jdbc:mysql://localhost:3306/library_system";
-    private final String user = "root";
-    private final String password = "1234";
 
 
     public void BookReturn() {
@@ -23,12 +20,15 @@ public class BookCheckIn {
 
         input.close();
 
+        String user = "root";
+        String password = "1234";
+        String url = "jdbc:mysql://localhost:3306/library_system";
         try (Connection connection = DriverManager.getConnection(url, user, password)) {
             // Update the book status to checked in in the database
-            String updateQuery = "UPDATE item_catalog SET available_for_checkout = true WHERE item_id = ? AND user_id = ?";
+            String updateQuery = "UPDATE item_catalog SET available_for_checkout = true WHERE item_id = ?";
             try (PreparedStatement preparedStatement = connection.prepareStatement(updateQuery)) {
                 preparedStatement.setString(1, bookId);
-                preparedStatement.setString(2, userId);
+                //preparedStatement.setString(2, userId);
 
                 int rowsAffected = preparedStatement.executeUpdate();
 
