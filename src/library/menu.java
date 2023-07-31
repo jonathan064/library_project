@@ -14,7 +14,6 @@ public class menu
         CheckoutItem checkoutItem = new CheckoutItem();
         ViewItemCatalog catalog = new ViewItemCatalog();
         BookCheckIn checkIn = new BookCheckIn();
-        request_unavailable_item
         RequestUnavailableItem unavailableItem = new RequestUnavailableItem();
         CheckFines viewFines = new CheckFines();
         String option_select;
@@ -26,6 +25,7 @@ public class menu
         System.out.print("4. Checkout book:\n");
         System.out.print("5. View Outstanding Fines:\n");
         System.out.print("6. Request unavailable item:\n");
+        System.out.print("7. Request extension on loan:\n");
 
         option_select = input.nextLine();
         //displays different options
@@ -47,8 +47,10 @@ public class menu
                 viewFines.OutstandingFines();
                 break;
             case "6":
-                request_unavailable_item
                 unavailableItem.getInput();
+                break;
+            case "7":
+                new ItemRenewal();
                 break;
 
             default:
