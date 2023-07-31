@@ -1,9 +1,14 @@
 package library;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.Statement;
+import java.time.LocalDate;
+import java.util.Objects;
 import java.util.Scanner;
 
-public class ItemRenewal
+public class ItemRenewal extends BestSellerCheck
 {
     ViewCheckedOut display;
     private ResultSet resultSet;
@@ -23,7 +28,40 @@ public class ItemRenewal
 
     public void requestRenewal(String item_id)
     {
-        System.out.print(item_id);
+        String result_id="";
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection conn = DriverManager.getConnection(url, user, password);
+            Statement myStatement = conn.createStatement();
+            String get_userId = "SELECT item_id FROM item_request WHERE user_id='"+item_id+"'";
+            resultSet = myStatement.executeQuery(get_userId);
+
+            while (resultSet.next())
+            {
+                result_id = resultSet.getString(1);
+            }
+            //if object has been requested by a user
+            if (Objects.equals(item_id, result_id))
+            {
+                System.out.print("Loan cannot be renewed because another user has requested it.\n");
+            }
+            //if object hasn't been requested, get new due date and update renew to 1
+            else
+            {
+
+                String checkout_date="";
+                String get_newCheckoutDate = "SELECT due_date FROM item_checkout WHERE item_id='"+item_id+"'";
+                resultSet = myStatement.executeQuery(get_newCheckoutDate);
+                while (resultSet.next())
+                {
+                    checkout_date = resultSet.getString("due_date");
+                }
+                System.out.print(checkout_date);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void setItem_id(String id)
