@@ -26,6 +26,7 @@ public class menu
         System.out.print("5. View Outstanding Fines:\n");
         System.out.print("6. Request unavailable item:\n");
         System.out.print("7. Request extension on loan:\n");
+        System.out.print("8. View Items Checked Out:\n");
 
         option_select = input.nextLine();
         //displays different options
@@ -51,6 +52,9 @@ public class menu
                 break;
             case "7":
                 new ItemRenewal();
+                break;
+            case "8":
+                new ViewCheckedOut();
                 break;
 
             default:
