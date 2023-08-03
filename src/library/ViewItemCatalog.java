@@ -15,9 +15,9 @@ public class ViewItemCatalog {
         String userOption;
 
         System.out.print("\t\tCatalog Menu\n");
-        System.out.print("\t1. View books available for checkout: \n");
+        System.out.print("\t1. View items available for checkout: \n");
         System.out.print("\t2. View best seller list: \n");
-        System.out.print("\t3. View entire book catalog: \n");
+        System.out.print("\t3. View entire catalog: \n");
         userOption = input.nextLine();
 
         switch(userOption){
@@ -92,8 +92,9 @@ public class ViewItemCatalog {
             resultSet = myStatement.executeQuery(sql);
             while (resultSet.next()) {
                 int id = resultSet.getInt("item_id");
-                String title = resultSet.getString("title");;
-                System.out.print("\nID:\t" + id + "\tTitle:\t" + title + "\n");
+                String title = resultSet.getString("title");
+                String type = resultSet.getString("item_type");
+                System.out.print("\nID:\t" + id + "\tTitle:\t" + title+ "\t\t\tType: " + type + "\n");
             }
         } catch (Exception e) {
             e.printStackTrace();
