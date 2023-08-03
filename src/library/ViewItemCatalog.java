@@ -15,9 +15,9 @@ public class ViewItemCatalog {
         String userOption;
 
         System.out.print("\t\tCatalog Menu\n");
-        System.out.print("\t1. View items available for checkout: \n");
+        System.out.print("\t1. View books available for checkout: \n");
         System.out.print("\t2. View best seller list: \n");
-        System.out.print("\t3. View entire catalog: \n");
+        System.out.print("\t3. View entire book catalog: \n");
         userOption = input.nextLine();
 
         switch(userOption){

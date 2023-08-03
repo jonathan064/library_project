@@ -63,8 +63,12 @@ public class CheckFines {
             for (Map.Entry<String, Double> entry : userFinesMap.entrySet()) {
                 String userId = entry.getKey();
                 double totalFine = entry.getValue();
-                System.out.println("User ID: " + userId + ", Total Fine: $" + totalFine);
+                //System.out.println("User ID: " + userId + ", Total Fine: $" + totalFine);
+                System.out.println("User ID: " + userId + ", Total Fine: $" + String.format("%.2f", totalFine));
+
             }
+
+
 
             // Return to main menu
             Scanner input = new Scanner(System.in);
@@ -96,7 +100,9 @@ public class CheckFines {
             }
 
             // Display the total outstanding fines for the specified user
-            System.out.println("Total outstanding fines for user ID " + userId + ": $" + totalFine);
+            //System.out.println("Total outstanding fines for user ID " + userId + ": $" + totalFine);
+            System.out.println("Total outstanding fines for user ID:" + userId + ", Total Fine: $" + String.format("%.2f", totalFine));
+
 
             // Return to main menu
             Scanner input = new Scanner(System.in);
