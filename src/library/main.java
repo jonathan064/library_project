@@ -5,5 +5,6 @@ public class main
     public static void main(String[] args)
     {
         new menu();
+        //go to menu from terminal
     }
 }
