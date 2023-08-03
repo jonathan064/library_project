@@ -9,11 +9,13 @@ public class RequestUnavailableItem {
 
     private String  item_id, name, request_date, user_id;
     private ResultSet resultSet;
+    ViewCheckedOut view = new ViewCheckedOut();
 
     public void getInput ()
     {
         boolean redo = true;
         Scanner input = new Scanner(System.in);
+        view.displayAllCheckedOut();
         //repeats loop if information isn't correct to prevent conflicts with sql table insertion
         while (redo)
         {

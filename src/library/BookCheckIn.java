@@ -10,6 +10,7 @@ public class BookCheckIn {
     String user = "root";
     String password = "1234";
     String url = "jdbc:mysql://localhost:3306/library_system";
+    ViewCheckedOut view = new ViewCheckedOut();
 
     public void BookReturn() {
         Scanner input = new Scanner(System.in);
@@ -18,6 +19,10 @@ public class BookCheckIn {
         System.out.print("Enter the number of books you want to check in: ");
         int numberOfBooks = input.nextInt();
         input.nextLine(); // Consume the newline character left by nextInt()
+        // Get user ID from the user
+        //System.out.print("Enter the user ID: ");
+        //String userId = input.nextLine();
+        view.displayUserCheckedOut();
 
         for (int i = 0; i < numberOfBooks; i++) {
             // Get book ID from the user
@@ -26,9 +31,7 @@ public class BookCheckIn {
             bookIdsToCheckIn.add(bookId);
         }
 
-        // Get user ID from the user
-        System.out.print("Enter the user ID: ");
-        String userId = input.nextLine();
+
 
 
 
@@ -71,7 +74,7 @@ public class BookCheckIn {
                             String deleteQuery = "DELETE FROM item_checkout WHERE item_id = ? AND user_id = ?";
                             try (PreparedStatement deleteStatement = connection.prepareStatement(deleteQuery)) {
                                 deleteStatement.setString(1, bookId);
-                                deleteStatement.setString(2, userId);
+                                deleteStatement.setString(2, view.getUser_id());
                                 deleteStatement.executeUpdate();
                             }
 
@@ -95,6 +98,10 @@ public class BookCheckIn {
 
             if (totalBooksCheckedIn > 0) {
                 System.out.println("Successfully checked in " + totalBooksCheckedIn + " book(s).");
+                if (totalOverdueFine < 0)
+                {
+                    totalOverdueFine = 0;
+                }
                 System.out.println("Total overdue fine: $" + totalOverdueFine);
 
                 String select;
