@@ -13,22 +13,22 @@ public class menu
         AddUser new_user = new AddUser();
         CheckoutItem checkoutItem = new CheckoutItem();
         ViewItemCatalog catalog = new ViewItemCatalog();
-        NonCheckoutItem catalogRef = new NonCheckoutItem();
         BookCheckIn checkIn = new BookCheckIn();
         RequestUnavailableItem unavailableItem = new RequestUnavailableItem();
         CheckFines viewFines = new CheckFines();
+        ViewUsers viewUsers = new ViewUsers();
         String option_select;
         Scanner input = new Scanner(System.in);
         System.out.print("Select an option from below:\n");
         System.out.print("1. Create new library card:\n");
-        System.out.print("2. View Book Catalog:\n");
-        System.out.print("3. View Reference and Magazine Catalog:\n");
-        System.out.print("4. Check-in book:\n");
-        System.out.print("5. Checkout book:\n");
-        System.out.print("6. View Outstanding Fines:\n");
-        System.out.print("7. Request unavailable item:\n");
-        System.out.print("8. Request extension on loan:\n");
-        System.out.print("9. View Items Checked Out By User:\n");
+        System.out.print("2. View Catalog:\n");
+        System.out.print("3. Check-in book:\n");
+        System.out.print("4. Checkout book:\n");
+        System.out.print("5. View Outstanding Fines:\n");
+        System.out.print("6. Request unavailable item:\n");
+        System.out.print("7. Request extension on loan:\n");
+        System.out.print("8. View Items Checked Out:\n");
+        System.out.print("9. View User Info:\n");
 
         option_select = input.nextLine();
         //displays different options
@@ -41,26 +41,25 @@ public class menu
                 catalog.viewCatalog();
                 break;
             case "3":
-                catalogRef.viewRefCatalog();
-                break;
-            case "4":
                 checkIn.BookReturn();
                 break;
-            case "5":
+            case "4":
                 checkoutItem.getInput();
                 break;
-            case "6":
+            case "5":
                 viewFines.OutstandingFines();
                 break;
-            case "7":
+            case "6":
                 unavailableItem.getInput();
                 break;
-            case "8":
+            case "7":
                 new ItemRenewal();
                 break;
+            case "8":
+                new ViewCheckedOut();
+                break;
             case "9":
-                ViewCheckedOut view = new ViewCheckedOut();
-                view.displayUserCheckedOut();
+                viewUsers.viewUserMenu();
                 break;
 
             default:
