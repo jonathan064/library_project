@@ -34,14 +34,16 @@ public class ViewCheckedOut
             while (resultSet.next())
             {
                 System.out.print("\nItems currently loaned to "+ resultSet.getString(1));
+                System.out.print("\n=====================================================================================");
             }
-            String sql = "SELECT item_id, title, due_date FROM item_checkout WHERE user_id='"+user_id+"'";
+            String sql = "SELECT item_id, title, checkout_date, due_date FROM item_checkout WHERE user_id='"+user_id+"'";
             resultSet = myStatement.executeQuery(sql);
             while (resultSet.next()) {
                 int id = resultSet.getInt("item_id");
                 String title = resultSet.getString("title");
+                String checkout_date = resultSet.getString("checkout_date");
                 String due_date = resultSet.getString("due_date");
-                System.out.print("\nBook ID: " + id + "\tTitle: " + title + "\tDue:" + due_date + "\n");
+                System.out.print("\nBook ID: " + id + "\tTitle: " + title + "\tChecked out:" + checkout_date + "\t\tDue:" + due_date + "\n");
             }
         } catch (Exception e) {
             e.printStackTrace();

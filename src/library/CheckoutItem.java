@@ -65,7 +65,6 @@ public class CheckoutItem
             LocalDate calculate_due_date = LocalDate.parse(checkout_date);
             calculate_due_date = calculate_due_date.plusWeeks(getWeeksToAdd());
             due_date = calculate_due_date.toString();
-            System.out.print(due_date);
 
             myStatement.executeUpdate("insert into item_checkout" + "(item_id,user_id,title,renew,checkout_date,due_date)" + "values('"+item_id+"','"+user_id+"','"+title+"','"+renew+"','"+checkout_date+" 00:00:01','"+due_date+" 00:00:01')");
             myStatement.executeUpdate("update item_catalog SET available_for_checkout = 0 WHERE item_id='"+item_id+"'");
