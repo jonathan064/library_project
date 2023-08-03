@@ -21,7 +21,7 @@ public class AddUser
             address = input.nextLine();
             System.out.print("Enter your phone number:\n");
             phone_number = input.nextLine();
-            System.out.print("Is the user a child? Enter 0 for No, 1 for Yes:\n");
+            System.out.print("Is the user a child? Y/N :\n");
             is_child = input.nextLine();
             System.out.print("Is this information correct? " + name + ", " + address + ", " + phone_number + ", Child:"+ is_child+ " Y/N ");
             String correct = input.nextLine();
@@ -29,6 +29,11 @@ public class AddUser
             {
                 redo = false;
             }
+            if (Objects.equals(is_child, "Y") || Objects.equals(correct, "y"))
+            {
+                is_child = "1";
+            }
+            else is_child = "0";
         }
         input.close();
         insertUserIntoTable(name,address,phone_number,is_child);

@@ -21,7 +21,7 @@ public class menu
         Scanner input = new Scanner(System.in);
         System.out.print("Select an option from below:\n");
         System.out.print("1. Create new library card:\n");
-        System.out.print("2. View Book Catalog:\n");
+        System.out.print("2. View Item Catalog:\n");
         System.out.print("3. View Reference and Magazine Catalog:\n");
         System.out.print("4. Check-in book:\n");
         System.out.print("5. Checkout book:\n");
