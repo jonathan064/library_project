@@ -13,7 +13,16 @@
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="8e232d32-be59-452a-b310-792af6a7344c">
-      <console name="Connection" type="STANDARD" schema="library_system" session="Main"><![CDATA[select * from library_card;]]></console>
+      <console name="Connection" type="STANDARD" schema="library_system" session="Main"><![CDATA[CREATE TABLE item_request(
+request_id int AUTO_INCREMENT,
+user_id int NOT NULL,
+item_id int NOT NULL,
+name varchar(50),
+request_date DATETIME NOT NULL,
+PRIMARY KEY (request_id),
+FOREIGN KEY (user_id) REFERENCES library_card(user_id),
+FOREIGN KEY (item_id) REFERENCES item_catalog(item_id)
+);]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseEditorStateManager">

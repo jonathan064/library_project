@@ -23,6 +23,7 @@ public class ItemCheckoutFacade
         else if(!available.isAvailable(item_id))
         {
             System.out.print("Sorry that item isn't available for checkout");
+
         }
         else if(!itemLimit.validCheckout(user_id))
         {

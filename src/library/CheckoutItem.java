@@ -1,5 +1,6 @@
 package library;
 
+import java.awt.*;
 import java.util.Objects;
 import java.util.Scanner;
 import java.sql.*;
@@ -9,14 +10,20 @@ public class CheckoutItem
     private String item_id, user_id, title, checkout_date, due_date;
     private int weeksToAdd = 0;
     ItemCheckoutFacade conditionsCheck;
+    ViewItemCatalog available;
+
+
     public void getInput ()
     {
-        boolean redo = true;
         Scanner input = new Scanner(System.in);
+        boolean redo = true;
+
         //repeats loop if information isn't correct to prevent conflicts with sql table insertion
         while (redo)
         {
-            System.out.print("Enter the ID of the item:\n");
+            available = new ViewItemCatalog();
+            available.getAvailable();
+            System.out.print("Enter the ID of the item to checkout:\n");
             item_id = input.nextLine();
             System.out.print("Enter the user ID:\n");
             user_id = input.nextLine();
