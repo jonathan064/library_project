@@ -17,6 +17,7 @@ public class menu
         BookCheckIn checkIn = new BookCheckIn();
         RequestUnavailableItem unavailableItem = new RequestUnavailableItem();
         CheckFines viewFines = new CheckFines();
+        ViewUserInfo viewInfo = new ViewUserInfo();
         String option_select;
         Scanner input = new Scanner(System.in);
         System.out.print("Select an option from below:\n");
@@ -29,6 +30,7 @@ public class menu
         System.out.print("7. Request unavailable item:\n");
         System.out.print("8. Request extension on loan:\n");
         System.out.print("9. View Items Checked Out By User:\n");
+        System.out.print("10. View User Info:\n");
 
         option_select = input.nextLine();
         //displays different options
@@ -61,6 +63,9 @@ public class menu
             case "9":
                 ViewCheckedOut view = new ViewCheckedOut();
                 view.displayUserCheckedOut();
+                break;
+            case "10":
+                viewInfo.viewUserMenu();
                 break;
 
             default:
