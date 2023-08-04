@@ -51,7 +51,7 @@ public class ViewCheckedOut
                 {
                     renewable = "Yes";
                 }
-                System.out.print( "\nChecked out:" + checkout_date + "\t\tDue:" + due_date + "\nBook ID: " + id + "\t\tTitle: " + title  + "\n" + "Renewed before: " + renewable + "\n");
+                System.out.print( "\nBook ID: " + id + "\t\tTitle: " + title  + "\nChecked out:  " + checkout_date + "\t\tDue:  " + due_date +  "\n" + "Renewed before: " + renewable + "\n");
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -82,7 +82,8 @@ public class ViewCheckedOut
                 {
                     renewable = "Yes";
                 }
-                System.out.print( "\nChecked out:" + checkout_date + "\t\tDue:" + due_date + "\nBook ID: " + id + "\t\tTitle: " + title  + "\n" + "Renewed before: " + renewable + "\n");
+                System.out.print( "\nBook ID: " + id + "\t\tTitle: " + title  + "\nChecked out:  " + checkout_date + "\t\tDue:  " + due_date +  "\n" + "Renewed before: " + renewable + "\n");
+
             }
         } catch (Exception e) {
             e.printStackTrace();

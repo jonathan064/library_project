@@ -73,6 +73,7 @@ public class ItemRenewal extends BestSellerCheck
                 due_date = calculate_due_date.toString();
                 myStatement.executeUpdate("update item_checkout SET renew = 1, checkout_date = '" +checkout_date+" 00:00:01', due_date = '" +due_date+ " 00:00:01' WHERE item_id='"+item_id+"'");
                 System.out.print("Successfully renewed loan, your new due date is :"+ due_date+"\n");
+
             }
 
         } catch (Exception e) {
