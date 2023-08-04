@@ -54,9 +54,10 @@ public class ViewItemCatalog {
             Statement myStatement = conn.createStatement();
             String sql = "SELECT item_id, title FROM item_catalog WHERE available_for_checkout >= 1";
             resultSet = myStatement.executeQuery(sql);
+            System.out.print("Items Available for Checkout\n============================================================================================================\n");
             while (resultSet.next()) {
                 int id = resultSet.getInt("item_id");
-                String title = resultSet.getString("title");;
+                String title = resultSet.getString("title");
                 System.out.print("\nID:\t" + id + "\tTitle:\t" + title + "\n");
             }
         } catch (Exception e) {

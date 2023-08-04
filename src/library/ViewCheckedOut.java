@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class ViewCheckedOut
@@ -19,7 +20,7 @@ public class ViewCheckedOut
 
     public void displayUserCheckedOut()
     {
-        System.out.print("Enter the id of the user to view items currently checked out\n");
+        System.out.print("Enter the id of the user: \n");
         Scanner input = new Scanner(System.in);
         setUser_id(input.nextLine());
 
@@ -34,14 +35,23 @@ public class ViewCheckedOut
                 System.out.print("\nItems currently loaned to "+ resultSet.getString(1));
                 System.out.print("\n=====================================================================================");
             }
-            String sql = "SELECT item_id, title, checkout_date, due_date FROM item_checkout WHERE user_id='"+user_id+"'";
+            String sql = "SELECT * FROM item_checkout WHERE user_id='"+user_id+"'";
             resultSet = myStatement.executeQuery(sql);
             while (resultSet.next()) {
                 int id = resultSet.getInt("item_id");
                 String title = resultSet.getString("title");
                 String checkout_date = resultSet.getString("checkout_date");
                 String due_date = resultSet.getString("due_date");
-                System.out.print("\nBook ID: " + id + "\tTitle: " + title + "\tChecked out:" + checkout_date + "\t\tDue:" + due_date + "\n");
+                String renewable = resultSet.getString("renew");
+                if (Objects.equals(renewable, "0"))
+                {
+                    renewable = "No";
+                }
+                else
+                {
+                    renewable = "Yes";
+                }
+                System.out.print( "\nChecked out:" + checkout_date + "\t\tDue:" + due_date + "\nBook ID: " + id + "\t\tTitle: " + title  + "\n" + "Renewed before: " + renewable + "\n");
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -63,7 +73,16 @@ public class ViewCheckedOut
                 String title = resultSet.getString("title");
                 String checkout_date = resultSet.getString("checkout_date");
                 String due_date = resultSet.getString("due_date");
-                System.out.print("\nBook ID: " + id + "\tTitle: " + title + "\tChecked out:" + checkout_date + "\t\tDue:" + due_date + "\n");
+                String renewable = resultSet.getString("renew");
+                if (Objects.equals(renewable, "0"))
+                {
+                    renewable = "No";
+                }
+                else
+                {
+                    renewable = "Yes";
+                }
+                System.out.print( "\nChecked out:" + checkout_date + "\t\tDue:" + due_date + "\nBook ID: " + id + "\t\tTitle: " + title  + "\n" + "Renewed before: " + renewable + "\n");
             }
         } catch (Exception e) {
             e.printStackTrace();
